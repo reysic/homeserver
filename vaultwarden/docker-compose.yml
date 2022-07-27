@@ -1,0 +1,13 @@
+version: "3"
+services:
+  vaultwarden:
+    image: 'vaultwarden/server:latest'
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - ${VW_PORTS}
+    volumes:
+      - ./vw-data:/data
+    environment:
+      # Set to false after initial signup to prevent additional
+      - SIGNUPS_ALLOWED=false

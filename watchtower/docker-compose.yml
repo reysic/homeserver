@@ -1,0 +1,12 @@
+version: "3"
+services:
+   watchtower:
+     image: containrrr/watchtower
+     restart: always
+     volumes:
+       - /var/run/docker.sock:/var/run/docker.sock
+     environment:
+       - TZ=${TZ}
+       - WATCHTOWER_CLEANUP=true # optional - deletes old images to save space
+       - WATCHTOWER_NOTIFICATIONS=shoutrrr
+       - WATCHTOWER_NOTIFICATION_URL=pushover://shoutrrr:${PO_TOKEN}@${PO_USERKEY}
